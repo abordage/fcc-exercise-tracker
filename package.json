@@ -1,0 +1,27 @@
+{
+  "name": "fcc-exercise-tracker",
+  "version": "0.0.1",
+  "description": "A REST API project, part of Free Code Camp's curriculum",
+  "keywords": [
+    "node",
+    "express"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.12.4",
+    "mongoose": "^6.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abordage/fcc-exercise-tracker.git"
+  },
+  "author": "Pavel Bychko <box@abordage.dev>",
+  "homepage": "https://abordage.dev",
+  "license": "MIT"
+}

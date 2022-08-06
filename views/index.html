@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FCC Exercise Tracker by abordage</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
+
+    <style>
+        /** styles moved here so that GitHub detects the main language of the repository as javascript  */
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=block');
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            background-color: #d9d9d9;
+            background-image: linear-gradient(315deg, #d9d9d9 0%, #f6f2f2 74%);
+        }
+
+        body {
+            font-family: 'Courier Prime', monospace;
+            font-size: 1rem;
+            color: #1E293A;
+            text-align: center;
+            line-height: 1.6em;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+        }
+
+        header, footer {
+            padding: 1rem;
+        }
+
+        h2 {
+            margin-top: 3rem;
+        }
+
+        form {
+            margin: 10px auto;
+            padding: 20px;
+            max-width: 400px;
+        }
+
+        fieldset {
+            padding: 1rem;
+            border-radius: 0.2rem;
+        }
+
+        input {
+            margin-bottom: .5rem;
+            padding: .5rem;
+            width: 350px;
+            border: 1px solid lightgrey;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        input[type=submit] {
+            font-size: 16px;
+            border-radius: .2rem;
+            background-color: #E4F1FE;
+            border: 1px solid grey;
+            box-shadow: 2px 2px #999;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #FFFEC4;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 1rem 0 0 0;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            color: #1591B1;
+        }
+
+        pre, code {
+            border-radius: .2rem;
+            max-width: 90vw;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Exercise Tracker</h1>
+</header>
+
+<main>
+    <div>
+
+
+        <form action="/api/users" method="post">
+            <fieldset>
+                <legend>Create a New User</legend>
+
+                <p><code>POST /api/users</code></p>
+                <label><input id="uname" type="text" name="username" placeholder="username" required></label>
+                <input type="submit" value="Submit"/>
+            </fieldset>
+        </form>
+
+
+        <form id="exercise-form" method="post">
+            <fieldset>
+                <legend>Add exercises</legend>
+                <p><code>POST /api/users/:_id/exercises</code></p>
+                <label><input id="uid" type="text" name=":_id" placeholder=":_id" required></label>
+                <label><input id="desc" type="text" name="description" placeholder="description*" required></label>
+                <label><input id="dur" type="number" name="duration" placeholder="duration* (mins.)"required></label>
+                <label><input id="date" type="text" name="date" placeholder="date (yyyy-mm-dd)"></label>
+                <input type="submit" value="Submit"/>
+            </fieldset>
+        </form>
+
+        <h2>GET user's exercise log:</h2>
+        <pre><code class="language-json">GET /api/users/:_id/logs?[from][&amp;to][&amp;limit]
+[ ] = optional
+from, to = dates (yyyy-mm-dd);
+limit = number
+</code></pre>
+
+
+    </div>
+</main>
+<footer>
+    <p>
+        by <a href="https://abordage.dev">abordage.dev</a>
+    </p>
+</footer>
+
+<script>
+  const exerciseForm = document.getElementById('exercise-form')
+
+  exerciseForm.addEventListener('submit', () => {
+    const userId = document.getElementById('uid').value
+    exerciseForm.action = `/api/users/${userId}/exercises`
+
+    exerciseForm.submit()
+  })
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-json.min.js"></script>
+</body>
+</html>
